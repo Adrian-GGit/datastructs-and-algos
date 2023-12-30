@@ -1,10 +1,12 @@
 import math
-from typing import Generic, TypeVar, Callable
+from typing import TypeVar, Callable
 from operator import lt
+
+from datastructures.priorityq.priorityq import PriorityQ
 
 T = TypeVar('T')
 
-class BinaryHeap(Generic[T]):
+class BinaryHeap(PriorityQ):
     """
     Representation example:
                                   0
@@ -20,10 +22,8 @@ class BinaryHeap(Generic[T]):
     => left child of parent k: 2k+1
     => right child of parent k: 2k+2
     """
-    def __init__(self, priority_func: Callable[[T, T], bool] = lt) -> None:
-        self.queue = []
-        self.priority_func = priority_func
-
+    def __init__(self, comp_func: Callable[[T, T], bool] = lt) -> None:
+        super().__init__([], comp_func)
 
     def _get_left_child(self, parent_index: int) -> tuple[int, T | None]:
         return 2 * parent_index + 1
@@ -35,10 +35,6 @@ class BinaryHeap(Generic[T]):
 
     def _get_parent(self, child_index: int) -> tuple[int, T | None]:
         return (child_index - 1) // 2
-    
-
-    def _swap(self, first_index: int, second_index: int) -> None:
-        self.queue[first_index], self.queue[second_index] = self.queue[second_index], self.queue[first_index]
 
 
     def _heapify_down(self, index: int) -> None:
@@ -47,9 +43,9 @@ class BinaryHeap(Generic[T]):
             left_child_index = self._get_left_child(current_index)
             right_child_index = self._get_right_child(current_index)
             swap_index = current_index
-            if left_child_index < self.size() and self.priority_func(self.queue[left_child_index], self.queue[swap_index]):
+            if left_child_index < self.size() and self.comp_func(self.queue[left_child_index], self.queue[swap_index]):
                 swap_index = left_child_index
-            if right_child_index < self.size() and self.priority_func(self.queue[right_child_index], self.queue[swap_index]):
+            if right_child_index < self.size() and self.comp_func(self.queue[right_child_index], self.queue[swap_index]):
                 swap_index = right_child_index
 
             if swap_index != current_index:
@@ -63,7 +59,7 @@ class BinaryHeap(Generic[T]):
         current_index = index
         while current_index > 0:
             parent_index = self._get_parent(current_index)
-            if self.priority_func(self.queue[current_index], self.queue[parent_index]):
+            if self.comp_func(self.queue[current_index], self.queue[parent_index]):
                 self._swap(current_index, parent_index)
                 current_index = parent_index
             else:
@@ -78,51 +74,34 @@ class BinaryHeap(Generic[T]):
         Args:
             array (list): array to be converted to heap
         """
-        if len(array) == 0: return
-        self.queue = array
-        for i in range(len(array) // 2, -1, -1):
-            self._heapify_down(i)
+        super().build(array)
+        if len(array) != 0:
+            for i in range(len(array) // 2, -1, -1):
+                self._heapify_down(i)
 
 
-    def decrease_key(self, index: int, val: T) -> None:
-        self.queue[index] = val
-        self._heapify_up(index)
-
-
-    def insert(self, val: T) -> None:
-        self.queue.append(val)
-        self.decrease_key(self.size() - 1, val)
-
-
-    def delete_first(self) -> T | None:
-        return self.remove_at(0)
-
-
-    def remove_at(self, index: int) -> T:
-        if self.is_empty():
-            return None
-        
-        self._swap(index, self.size() - 1)
+    def remove(self, index: int) -> T:
+        super().remove(index)
+        self._swap(index, self.size() - 1)  
         removed = self.queue.pop()
         if index != self.size():
             self._heapify_down(index)
             
         return removed
+    
 
+    def decrease_key(self, index: int, val: T) -> None:
+        super().decrease_key(index, val)
+        self._heapify_up(index)
 
-    def peek_first(self) -> T:
-        return None if self.is_empty() else self.queue[0]
-
-
-    def size(self) -> int:
-        return len(self.queue)
-
-
-    def is_empty(self) -> bool:
-        return self.size() <= 0
+    
+    def merge(self, queue) -> None:
+        super().merge(queue)
 
 
     def visualize(self) -> None:
+        super().visualize()
+
         def _add_padding(block_size, element, padding_char, block_space_char):
             half_block_size = block_size // 2
             block_size_rest = block_size % 2

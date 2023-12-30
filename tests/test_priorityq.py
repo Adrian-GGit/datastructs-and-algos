@@ -13,50 +13,50 @@ INTEGER_RANGE_START = 0
 INTEGER_RANGE_END = 1000
 LENGTH_LSTS = random.randint(0, 100)
 
-priority_functions = [
+comp_funcs = [
     lt, gt
 ]
 
-def get_ground_truth(priority_function: Callable[[T, T], bool], array: list[int]) -> list[int]:
+def get_ground_truth(comp_func: Callable[[T, T], bool], array: list[int]) -> list[int]:
     ground_truth_array = copy.deepcopy(array)
-    if priority_function == gt:
+    if comp_func == gt:
         ground_truth_array = list(reversed(sorted(array)))
     else:
         ground_truth_array = list(sorted(array))
     return ground_truth_array
 
 
-@pytest.mark.parametrize('priority_function', priority_functions)
-def test_empty_heap(priority_function):
-    binary_heap = BinaryHeap(priority_function)
+@pytest.mark.parametrize('comp_func', comp_funcs)
+def test_empty_heap(comp_func):
+    binary_heap = BinaryHeap(comp_func)
 
     assert binary_heap.size() == 0
     assert binary_heap.is_empty() is True
 
 
-@pytest.mark.parametrize('priority_function', priority_functions)
-def test_build_heap_randomly(priority_function):
+@pytest.mark.parametrize('comp_func', comp_funcs)
+def test_build_heap_randomly(comp_func):
     for _ in range(NUM_TESTS):
-        binary_heap = BinaryHeap(priority_function)
+        binary_heap = BinaryHeap(comp_func)
         array = [random.randint(INTEGER_RANGE_START, INTEGER_RANGE_END) for _ in range(LENGTH_LSTS)]
         print(f'[-] Used array: {array}')
         binary_heap.build(copy.deepcopy(array))
 
         popped_values = []
-        array_reverse_sorted = get_ground_truth(priority_function, array)
+        array_reverse_sorted = get_ground_truth(comp_func, array)
         for _ in range(len(array)):
             next_max = array_reverse_sorted.pop(0)
-            assert binary_heap.peek_first() == next_max
-            current = binary_heap.delete_first()
+            assert binary_heap.peek_min() == next_max
+            current = binary_heap.delete_min()
             popped_values.append(current)
 
-        assert popped_values == get_ground_truth(priority_function, array)
+        assert popped_values == get_ground_truth(comp_func, array)
 
 
-@pytest.mark.parametrize('priority_function', priority_functions)
-def test_insert_heap_randomly(priority_function): 
+@pytest.mark.parametrize('comp_func', comp_funcs)
+def test_insert_heap_randomly(comp_func): 
     for _ in range(NUM_TESTS):
-        binary_heap = BinaryHeap(priority_function)
+        binary_heap = BinaryHeap(comp_func)
         array = [random.randint(INTEGER_RANGE_START, INTEGER_RANGE_END) for _ in range(LENGTH_LSTS)]
         binary_heap.build(copy.deepcopy(array))
 
@@ -67,30 +67,30 @@ def test_insert_heap_randomly(priority_function):
         print(f'[-] Used array: {array}')
 
         popped_values = []
-        array_reverse_sorted = get_ground_truth(priority_function, array)
+        array_reverse_sorted = get_ground_truth(comp_func, array)
         for _ in range(len(array)):
             next_max = array_reverse_sorted.pop(0)
-            assert binary_heap.peek_first() == next_max
-            current = binary_heap.delete_first()
+            assert binary_heap.peek_min() == next_max
+            current = binary_heap.delete_min()
             popped_values.append(current)
 
-        assert popped_values == get_ground_truth(priority_function, array)
+        assert popped_values == get_ground_truth(comp_func, array)
 
 
-@pytest.mark.parametrize('priority_function', priority_functions)
-def test_heap_randomly(priority_function):
+@pytest.mark.parametrize('comp_func', comp_funcs)
+def test_heap_randomly(comp_func):
     for _ in range(NUM_TESTS):
-        binary_heap = BinaryHeap(priority_function)
+        binary_heap = BinaryHeap(comp_func)
         array = [random.randint(INTEGER_RANGE_START, INTEGER_RANGE_END) for _ in range(LENGTH_LSTS)]
         print(f'[-] Used array: {array}')
         binary_heap.build(copy.deepcopy(array))
         
         popped_values = []
-        array_reverse_sorted = get_ground_truth(priority_function, array)
+        array_reverse_sorted = get_ground_truth(comp_func, array)
         for _ in range(len(array)):
             next_max = array_reverse_sorted.pop(0)
-            assert binary_heap.peek_first() == next_max
-            current = binary_heap.delete_first()
+            assert binary_heap.peek_min() == next_max
+            current = binary_heap.delete_min()
             popped_values.append(current)
 
-        assert popped_values == get_ground_truth(priority_function, array)
+        assert popped_values == get_ground_truth(comp_func, array)
