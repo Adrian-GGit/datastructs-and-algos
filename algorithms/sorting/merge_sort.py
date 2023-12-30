@@ -1,14 +1,7 @@
-from typing import Generic, TypeVar, Callable
-from operator import lt
-
-T = TypeVar('T')
-
-class MergeSort(Generic[T]):
-    def __init__(self, lst: list[T], comp_func: Callable[[T, T], bool] = lt) -> None:
-        self.comp_func = comp_func
-        self.lst = lst
+from algorithms.sorting.sort import Sort, T
 
 
+class MergeSort(Sort):
     def _merge(self, left: list[T], right: list[T]) -> list[T]:
         sorted_lst = []
         while left and right:

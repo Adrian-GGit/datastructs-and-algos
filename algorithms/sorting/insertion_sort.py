@@ -1,18 +1,7 @@
-from typing import Generic, TypeVar, Callable
-from operator import lt
-
-T = TypeVar('T')
-
-class InsertionSort(Generic[T]):
-    def __init__(self, lst: list[T], comp_func: Callable[[T, T], bool] = lt) -> None:
-        self.comp_func = comp_func
-        self.lst = lst
+from algorithms.sorting.sort import Sort, T
 
 
-    def _swap(self, first_index: int, second_index: int) -> None:
-        self.lst[first_index], self.lst[second_index] = self.lst[second_index], self.lst[first_index]
-
-
+class InsertionSort(Sort):
     def sort(self) -> list[T]:
         for index in range(len(self.lst)):
             current_elem = self.lst[index]

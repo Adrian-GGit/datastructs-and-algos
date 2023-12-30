@@ -1,18 +1,7 @@
-from typing import Generic, TypeVar, Callable
-from operator import lt
-
-T = TypeVar('T')
-
-class BubbleSort(Generic[T]):
-    def __init__(self, lst: list[T], comp_func: Callable[[T, T], bool] = lt) -> None:
-        self.comp_func = comp_func
-        self.lst = lst
+from algorithms.sorting.sort import Sort, T
 
 
-    def _swap(self, first_index: int, second_index: int) -> None:
-        self.lst[first_index], self.lst[second_index] = self.lst[second_index], self.lst[first_index]
-
-
+class BubbleSort(Sort):
     def sort(self) -> list[T]:
         swapped = True
         rng = len(self.lst)
