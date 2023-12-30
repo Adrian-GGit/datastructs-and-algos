@@ -1,5 +1,5 @@
 from tests.fixtures.dfsFixtures import list_graph, backtrack_graph, tutorial_graph
-from src.DFS import dfs
+from algorithms.DFS import dfs
 
 VERBOSE = True
 
