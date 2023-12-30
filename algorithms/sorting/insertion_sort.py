@@ -9,7 +9,7 @@ class InsertionSort(Generic[T]):
         self.lst = lst
 
 
-    def swap(self, first_index: int, second_index: int) -> None:
+    def _swap(self, first_index: int, second_index: int) -> None:
         self.lst[first_index], self.lst[second_index] = self.lst[second_index], self.lst[first_index]
 
 
