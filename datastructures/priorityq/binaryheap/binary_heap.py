@@ -21,28 +21,23 @@ class BinaryHeap():
         self.priority_func = priority_func
 
 
+    def get_node(self, index: int) -> tuple[int, int | None]:
+        value = None
+        if index < len(self.queue):
+            value = self.queue[index]
+        return index, value
+
+
     def get_left(self, parent_index: int) -> tuple[int, int | None]:
-        left_value = None
-        left_index = 2 * parent_index + 1
-        if left_index < len(self.queue):
-            left_value = self.queue[left_index]
-        return left_index, left_value
+        return self.get_node(2 * parent_index + 1)
 
 
     def get_right(self, parent_index: int) -> tuple[int, int | None]:
-        right_value = None
-        right_index = 2 * parent_index + 2
-        if right_index < len(self.queue):
-            right_value = self.queue[right_index]
-        return right_index, right_value
+        return self.get_node(2 * parent_index + 2)
     
 
     def get_parent(self, child_index: int) -> tuple[int, int | None]:
-        parent_value = None
-        parent_index = (child_index - 1) // 2
-        if parent_index < len(self.queue):
-            parent_value = self.queue[parent_index]
-        return parent_index, parent_value
+        return self.get_node((child_index - 1) // 2)
     
 
     def swap(self, first_index: int, second_index: int) -> None:
@@ -61,8 +56,7 @@ class BinaryHeap():
             parent_index, parent_val = current_index, self.queue[current_index]
             left_index, left_val = self.get_left(parent_index)
             right_index, right_val = self.get_right(parent_index)
-            l = [parent_val, left_val, right_val]
-            priority_val = self.get_priority_val(l)
+            priority_val = self.get_priority_val([parent_val, left_val, right_val])
 
             if priority_val == parent_val:
                 break
@@ -133,48 +127,66 @@ class BinaryHeap():
 
     def is_empty(self) -> bool:
         return self.size() <= 0
-    
-    
-    def visualize(self) -> None:
-        if self.is_empty():
-            return ''
 
-        space_length = 1
+
+    def visualize(self) -> None:
+        def add_padding(block_size, element, padding_char, block_space_char):
+            half_block_size = block_size // 2
+            block_size_rest = block_size % 2
+            half_element_size = len(element) // 2
+            element_size_rest = len(element) % 2
+            padding_front = (half_block_size - half_element_size) * padding_char
+            padding_back = (half_block_size + block_size_rest - half_element_size - element_size_rest) * padding_char
+            return padding_front + element + padding_back + block_space_char
         
-        output = ''
-        longest_number = max([len(str(number)) for number in self.queue])
-        heap_depth = math.floor(math.log(self.size(), 2)) + 1
-        block_space_char = ' ' * space_length
-        space_char = ' '
-        current_level = heap_depth
-        last_block_size = longest_number
-        while current_level > 0:
+
+        def get_nodes(current_level, empty_node_char):
             num_nodes_on_level = (2**current_level) // 2
             start = 2**current_level - (num_nodes_on_level + 1)
             end = start + (num_nodes_on_level) if start + num_nodes_on_level <= self.size() else self.size()
-            numbers_of_level = self.queue[start:end]
+            nodes = self.queue[start:end]
+            nodes.extend([empty_node_char for _ in range(num_nodes_on_level - len(nodes))])
+            return nodes
 
+
+        def get_biggest_node():
+            return max([len(str(number)) for number in self.queue])
+        
+
+        def get_heap_depth():
+            return math.floor(math.log(self.size(), 2)) + 1
+        
+
+        def add_box(current_level, line, previous_lines):
+            BOX_TOP = '-'
+            BOX_SIDE = '|'
+            box_outer = BOX_TOP * (len(line) + 2)
+            empty_line = '\n' + BOX_SIDE + SPACE_CHAR*len(line) + BOX_SIDE if current_level != get_heap_depth() - 1 else '\n' + box_outer
+            added_new_line = '\n' + BOX_SIDE + line + BOX_SIDE + empty_line + previous_lines
+            if current_level <= 0:
+                added_new_line = box_outer + added_new_line
+            return added_new_line
+
+
+        if self.is_empty():
+            return ''
+
+        SPACE_LENGTH = 1
+        SPACE_CHAR = ' '
+        BLOCK_SPACE_CHAR = SPACE_CHAR * SPACE_LENGTH
+        EMPTY_NODE_CHAR = '*'
+        
+        output = ''
+        current_level = get_heap_depth()
+        last_block_size = get_biggest_node()
+        while current_level > 0:
             line = ''
-            current_block_size = 2 * last_block_size + space_length
-            for number in numbers_of_level:
-                padding_front = ((longest_number // 2) - (len(str(number)) // 2)) * space_char
-                padding_back = ((longest_number // 2) + (longest_number % 2) - (len(str(number)) // 2) - (len(str(number)) % 2)) * space_char
-                number_with_padding = padding_front + str(number) + padding_back
-
-                padding_block_size_front = ((current_block_size // 2) - (len(number_with_padding) // 2)) * space_char
-                padding_block_size_back = (
-                    (current_block_size // 2) + (current_block_size // 2 % 2) - (len(number_with_padding) // 2) - (len(number_with_padding) % 2)
-                ) * space_char
-                number_with_all_paddings = padding_block_size_front + number_with_padding + padding_block_size_back + block_space_char
-                line += number_with_all_paddings
+            current_block_size = 2 * last_block_size + SPACE_LENGTH
+            for number in get_nodes(current_level, EMPTY_NODE_CHAR):
+                line += add_padding(current_block_size, str(number), SPACE_CHAR, BLOCK_SPACE_CHAR)
             last_block_size = current_block_size
-
-            output = '\n' + '|' + line + output
             current_level -= 1
+            output = add_box(current_level, line, output)
     
-        max_line_length = len(max(output.split('\n'), key=len))
-        separator = '-' * max_line_length
-        output = '\n' + separator + output + '\n' + separator + '\n'
         print(output)
-
         return output

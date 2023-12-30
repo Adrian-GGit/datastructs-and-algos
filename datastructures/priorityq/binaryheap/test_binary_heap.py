@@ -64,6 +64,7 @@ def test_build_heap_randomly(priority_function):
             popped_values.append(current)
 
         assert popped_values == get_ground_truth(priority_function, array)
+        print(f'[-] Used array: {array}')
 
 
 @pytest.mark.parametrize('priority_function', priority_functions)
