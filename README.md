@@ -8,10 +8,10 @@ This repository contains the implementation of different popular data structures
 ## Sorting algorithms
 Algorithm | Python | C++
 :------------ | :-------------| :-------------
-Merge sort | ❌ | ❌
-Quick sort | ❌ | ❌
-Bubble sort | ❌ | ❌
-Insertion sort | ❌ | ❌
+Merge sort | ✅ | ❌
+Quick sort | ✅ | ❌
+Bubble sort | ✅ | ❌
+Insertion sort | ✅ | ❌
 
 ## Search algorithms
 ### Shortest path
