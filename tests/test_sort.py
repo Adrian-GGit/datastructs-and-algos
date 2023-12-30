@@ -4,13 +4,13 @@ import pytest
 from operator import lt, gt
 from typing import TypeVar, Callable
 from algorithms.sorting.bubble_sort import BubbleSort
+from algorithms.sorting.insertion_sort import InsertionSort
 
 from algorithms.sorting.merge_sort import MergeSort
 from algorithms.sorting.quick_sort import QuickSort
 
 T = TypeVar('T')
 
-NUM_TESTS = 1
 NUM_TESTS = 500
 INTEGER_RANGE_START = 0
 INTEGER_RANGE_END = 1000
@@ -22,6 +22,8 @@ priority_functions = [
 sorting_algos = [
     MergeSort,
     QuickSort,
+    BubbleSort,
+    InsertionSort,
 ]
 
 def get_ground_truth(priority_function: Callable[[T, T], bool], array: list) -> list:
