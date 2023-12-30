@@ -28,7 +28,7 @@ Kruskal | ❌ | ❌
 ### Depths first search
 Datastruct | Python | C++
 :------------ | :-------------| :-------------
-DFS algorithm | ❌ | ❌
+DFS algorithm | ✅ | ❌
 ### Maximum flow/Minimum s-t cut
 Datastruct | Python | C++
 :------------ | :-------------| :-------------
