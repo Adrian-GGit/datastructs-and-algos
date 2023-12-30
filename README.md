@@ -106,3 +106,11 @@ Pairing heap | ❌ | ❌
 Fibonacci heap | ❌ | ❌
 Bucket queue | ❌ | ❌
 Radix heap | ❌ | ❌
+
+</br>
+
+# Testing
+To start the tests make sure you are in root dir and then execute
+```
+python -m pytest tests
+```

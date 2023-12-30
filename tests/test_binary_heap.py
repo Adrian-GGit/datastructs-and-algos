@@ -1,7 +1,8 @@
 import copy
 import random
 import pytest
-from binary_heap import BinaryHeap
+
+from datastructures.priorityq.binary_heap import BinaryHeap
 
 priority_functions = [
     min, max
