@@ -3,6 +3,8 @@ from algorithms.sorting.sort import Sort, T
 
 class InsertionSort(Sort):
     def sort(self) -> list[T]:
+        super().sort()
+
         for index in range(len(self.lst)):
             current_elem = self.lst[index]
             current_index = index - 1

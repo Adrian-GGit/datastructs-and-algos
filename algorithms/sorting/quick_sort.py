@@ -25,6 +25,8 @@ class QuickSort(Sort):
 
 
     def sort(self, left: int = 0, right: int = None) -> list[T]:
+        super().sort()
+
         if right is None:
             right = len(self.lst) - 1
         

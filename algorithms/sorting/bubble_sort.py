@@ -3,6 +3,8 @@ from algorithms.sorting.sort import Sort, T
 
 class BubbleSort(Sort):
     def sort(self) -> list[T]:
+        super().sort()
+
         swapped = True
         rng = len(self.lst)
         while swapped:

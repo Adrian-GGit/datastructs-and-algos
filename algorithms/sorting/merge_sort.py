@@ -13,6 +13,8 @@ class MergeSort(Sort):
 
 
     def sort(self, lst: list[T] = None) -> list[T]:
+        super().sort()
+
         if lst is None:
             lst = self.lst
 
