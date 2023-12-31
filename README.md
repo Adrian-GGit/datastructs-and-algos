@@ -26,24 +26,24 @@ Algorithm | Python | C++
 Prims algorithm | :x: | :x:
 Kruskal | :x: | :x:
 ### Depths first search
-Datastruct | Python | C++
+Algorithm | Python | C++
 :------------ | :-------------| :-------------
 DFS algorithm | :white_check_mark: | :x:
 ### Maximum flow/Minimum s-t cut
-Datastruct | Python | C++
+Algorithm | Python | C++
 :------------ | :-------------| :-------------
 Linear programming | :x: | :x:
 Ford fulkerson | :x: | :x:
 Dinitz algorithm | :x: | :x:
 Preflow-push algorithm | :x: | :x:
 ### Matching
-Datastruct | Python | C++
+Algorithm | Python | C++
 :------------ | :-------------| :-------------
 Maximum matching | :x: | :x:
 Maximum cardinality matching | :x: | :x:
 
 ## Randomized algorithms
-Datastruct | Python | C++
+Algorithm | Python | C++
 :------------ | :-------------| :-------------
 Sort checker (permutation characteristic)
 &ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp;Polynom | :x: | :x:
@@ -54,13 +54,13 @@ Hashing
 Quick sort | :x: | :x:
 
 ## External algorithms
-Datastruct | Python | C++
+Algorithm | Python | C++
 :------------ | :-------------| :-------------
 Multiway merge | :x: | :x:
 Semiexternal Kruskal | :x: | :x:
 
 ## Approximation algorithms
-Datastruct | Python | C++
+Algorithm | Python | C++
 :------------ | :-------------| :-------------
 List scheduling
 Metrical traveling salesman problem | :x: | :x:
@@ -71,19 +71,19 @@ Knapsack
 &ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp;Dynamic programming | :x: | :x:
 
 ## Fixed parameter algorithms
-Datastruct | Python | C++
+Algorithm | Python | C++
 :------------ | :-------------| :-------------
 Vertex cover | :x: | :x:
 
 ## Parallel algorithms
-Datastruct | Python | C++
+Algorithm | Python | C++
 :------------ | :-------------| :-------------
 Prefix sum | :x: | :x:
 Parallel quicksort | :x: | :x:
 Parallel multiway mergesort | :x: | :x:
 
 ## Geometric algorithms
-Datastruct | Python | C++
+Algorithm | Python | C++
 :------------ | :-------------| :-------------
 
 <br />
