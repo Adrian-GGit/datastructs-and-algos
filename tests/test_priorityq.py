@@ -1,3 +1,9 @@
+# TODO: validate code coverage
+# TODO: test all functions of binary heap etc
+# TODO: search for all invariants and test these
+
+
+
 import copy
 import random
 import pytest
