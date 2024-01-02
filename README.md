@@ -94,18 +94,18 @@ Algorithm | Python | C++
 Datastruct | Python | C++
 :------------ | :-------------| :-------------
 Binary heap | :white_check_mark: | :x:
-Binary search tree | :x: | :x:
 Binomial heap | :x: | :x:
 External priority queue | :x: | :x:
-External search trees | :x: | :x:
-
-## Adressable priority queues
-Datastruct | Python | C++
-:------------ | :-------------| :-------------
 Pairing heap | :x: | :x:
 Fibonacci heap | :x: | :x:
 Bucket queue | :x: | :x:
 Radix heap | :x: | :x:
+
+## Search trees
+Datastruct | Python | C++
+:------------ | :-------------| :-------------
+Binary search tree | :x: | :x:
+External search tree | :x: | :x:
 
 ## [Legend](https://gist.github.com/rxaviers/7360908)
 - :white_check_mark: Finished
