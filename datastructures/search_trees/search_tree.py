@@ -23,11 +23,12 @@ class SearchTree(ABC, Generic[T]):
 
 
     def _get_min_by_node(self, current_node) -> tuple[Node, V]:
-        if current_node is not None:
-            while current_node.left:
-                current_node = current_node.left
+        if not current_node: 
+            return None, None
+        while current_node.left:
+            current_node = current_node.left
         return current_node, current_node.value
-    
+
 
     def _shift_nodes(self, current_node: Node, next_node: Node) -> None:
         if not current_node.parent:

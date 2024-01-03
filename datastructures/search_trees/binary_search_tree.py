@@ -3,8 +3,7 @@ from datastructures.search_trees.search_tree import SearchTree, Node, T, V
 
 class BinarySearchTree(SearchTree):
     def search(self, search_key: T, current_node: Node = None) -> tuple[Node]:
-        if current_node is None:
-            current_node = self.root
+        current_node = current_node or self.root
         while current_node is not None and current_node.key != search_key:
             comparison_current_vs_search = self.order_relation(current_node.key, search_key)
             if comparison_current_vs_search:
@@ -15,47 +14,47 @@ class BinarySearchTree(SearchTree):
 
 
     def insert(self, key: T, value: V, current_node: Node = None) -> None:
-        if not current_node:
-            current_node = self.root
+        current_node = current_node or self.root
         new_node = Node(key, value)
         if not self.root:
             self.root = new_node
-        else:
-            comparison = self.order_relation(current_node.key, key)
-            if comparison:
-                if current_node.right:
-                    self.insert(key, value, current_node.right)
-                else:
-                    current_node.right = new_node
-                    new_node.parent = current_node
+            return
+        comparison = self.order_relation(current_node.key, key)
+        if comparison:
+            if current_node.right:
+                self.insert(key, value, current_node.right)
             else:
-                if current_node.left:
-                    self.insert(key, value, current_node.left)
-                else:
-                    current_node.left = new_node
-                    new_node.parent = current_node
+                current_node.right = new_node
+                new_node.parent = current_node
+        else:
+            if current_node.left:
+                self.insert(key, value, current_node.left)
+            else:
+                current_node.left = new_node
+                new_node.parent = current_node
         return
 
 
     def delete(self, key: T) -> V | None:
-        found_value = None
         found_node = self.search(key)
-        if found_node:
-            found_value = found_node.value
-            if not found_node.left:
-                self._shift_nodes(found_node, found_node.right)
-            elif not found_node.right:
-                self._shift_nodes(found_node, found_node.left)
-            else:
-                search_from_node = found_node.right if found_node.right else found_node
-                min_node, _ = self._get_min_by_node(search_from_node)
-                if min_node.parent != found_node:
-                    self._shift_nodes(min_node, min_node.right) # there can only be right nodes
-                    min_node.right = found_node.right
-                    min_node.right.parent = min_node
-                self._shift_nodes(found_node, min_node)
-                min_node.left = found_node.left
-                min_node.left.parent = min_node
+        if not found_node:
+            return None
+
+        found_value = found_node.value
+        if not found_node.left:
+            self._shift_nodes(found_node, found_node.right)
+        elif not found_node.right:
+            self._shift_nodes(found_node, found_node.left)
+        else:
+            search_from_node = found_node.right if found_node.right else found_node
+            min_node, _ = self._get_min_by_node(search_from_node)
+            if min_node.parent != found_node:
+                self._shift_nodes(min_node, min_node.right) # there can only be right nodes
+                min_node.right = found_node.right
+                min_node.right.parent = min_node
+            self._shift_nodes(found_node, min_node)
+            min_node.left = found_node.left
+            min_node.left.parent = min_node
         return found_value
 
 
@@ -66,8 +65,7 @@ class BinarySearchTree(SearchTree):
 
 
     def _display_aux(self, current_node = None):
-        if not current_node:
-            current_node = self.root
+        current_node = current_node or self.root
         if current_node.right is None and current_node.left is None:
             line = '%s' % current_node.key
             width = len(line)
