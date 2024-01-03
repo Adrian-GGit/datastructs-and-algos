@@ -6,12 +6,6 @@
 #include <unordered_map>
 #include <stack>
 
-#ifdef VERBOSE
-bool verbose = true;
-#else
-bool verbose = false;
-#endif
-
 namespace DFS
 {
 	using AdjacencyList = std::map<size_t, std::vector<size_t>>;
@@ -19,7 +13,7 @@ namespace DFS
 	class DFS
 	{
 	public:
-		DFS(AdjacencyList aList) : mE(aList)
+		DFS(AdjacencyList aList, bool verbose) : mE(aList), mVerbose(verbose)
 		{
 			for (auto it = mE.begin(); it != mE.end(); it++)
 			{
@@ -47,6 +41,11 @@ namespace DFS
 			return mComponent;
 		}
 
+		size_t getUniqueComponents()
+		{
+			return std::unordered_set<size_t>(mComponent.begin(), mComponent.end()).size();
+		}
+
 	private:
 		void mRoot(size_t v)
 		{
@@ -57,7 +56,7 @@ namespace DFS
 
 		void mDfs(size_t u, size_t v)
 		{
-			if (verbose)
+			if (mVerbose)
 				std::cout << "DFS("<<u << ", " << v << ")\n"; 
 
 			for (size_t w : mE.at(v))
@@ -75,7 +74,7 @@ namespace DFS
 		}
 		void mTraverseNonEdgeTree(size_t v, size_t w)
 		{
-			if (verbose)
+			if (mVerbose)
 				std::cout << "TRAVERSE_NONTREEEDGE("<<v << ", " << w << ")\n"; 
 			for (size_t x : mONodes)
 			{
@@ -92,7 +91,7 @@ namespace DFS
 
 		void mTraverseTreeEdge(size_t v, size_t w)
 		{
-			if (verbose)
+			if (mVerbose)
 				std::cout << "TRAVERSE_TREEEDGE("<<v << ", " << w << ")\n"; 
 
 			mOReps.push(w);
@@ -102,7 +101,7 @@ namespace DFS
 
 		void mBacktrack(size_t u, size_t v)
 		{
-			if (verbose)
+			if (mVerbose)
 				std::cout << "BACKTRACK("<<u << ", " <<v  << ")\n"; 
 
 			if (v != mOReps.top())
@@ -132,31 +131,6 @@ namespace DFS
 		std::unordered_map<size_t, size_t> mDfsNum;
 		std::vector<size_t> mComponent;
 		size_t mDfsPos = 0;
+		bool mVerbose = false;
 	};
 } // namespace DFS
-
-int main()
-{
-	std::map<size_t, std::vector<size_t>> aList;
-	for (size_t i = 0; i < 8; i++)
-	{
-		aList[i] = std::vector<size_t>();
-	}
-	aList[0] = {1, 5};
-	aList[1] = {2, 4};
-	aList[2] = {3};
-	aList[3] = {1};
-	aList[4] = {1};
-	aList[5] = {6, 7};
-	aList[6] = {0, 4};
-
-	auto dfs = DFS::DFS(aList);
-	dfs.process();
-
-	std::cout << "SCCs after DFS:\n";
-	for (size_t c : dfs.getComponent())
-	{
-		std::cout << c << ", ";
-	}
-	std::cout << std::endl;
-}
