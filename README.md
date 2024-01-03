@@ -104,7 +104,7 @@ Radix heap | :x: | :x:
 ## Search trees
 Datastruct | Python | C++
 :------------ | :-------------| :-------------
-Binary search tree | :x: | :x:
+Binary search tree | :white_check_mark: | :x:
 External search tree | :x: | :x:
 
 ## [Legend](https://gist.github.com/rxaviers/7360908)
