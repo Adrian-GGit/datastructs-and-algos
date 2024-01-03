@@ -37,7 +37,7 @@ def get_ground_truth(priority_function: Callable[[T, T], bool], array: list) -> 
 
 @pytest.mark.parametrize('priority_function', priority_functions)
 @pytest.mark.parametrize('sorting_algo', sorting_algos)
-def test_merge_sort(priority_function, sorting_algo):
+def test_sort(priority_function, sorting_algo):
     for _ in range(NUM_TESTS):
         lst = [random.randint(INTEGER_RANGE_START, INTEGER_RANGE_END) for _ in range(LENGTH_LSTS)]
         algo = sorting_algo(lst, priority_function)

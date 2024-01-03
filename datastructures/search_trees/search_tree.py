@@ -3,15 +3,41 @@ from typing import Generic, TypeVar, Callable
 from operator import lt
 
 T = TypeVar('T')
+V = TypeVar('V')
+
+
+class Node(Generic[T, V]):
+    def __init__(self, key: T, value: V) -> None:
+        self.key = key
+        self.value = value
+        self.left = None
+        self.right = None
+        self.parent = None
+
 
 class SearchTree(ABC, Generic[T]):
-    def __init__(self, queue: list[T], comp_func: Callable[[T, T], bool] = lt) -> None:
-        self.comp_func = comp_func
-        self.queue = queue
+    def __init__(self, order_relation: Callable[[T, T], bool] = lt) -> None:
+        self.order_relation = order_relation
+        self.tree_size = 0
+        self.root = None            
 
 
-    def _swap(self, first_index: int, second_index: int) -> None:
-        self.queue[first_index], self.queue[second_index] = self.queue[second_index], self.queue[first_index]
+    def _get_min_by_node(self, current_node) -> tuple[Node, V]:
+        if current_node is not None:
+            while current_node.left:
+                current_node = current_node.left
+        return current_node, current_node.value
+    
+
+    def _shift_nodes(self, current_node: Node, next_node: Node) -> None:
+        if not current_node.parent:
+            self.root = next_node
+        elif current_node == current_node.parent.left:
+            current_node.parent.left = next_node
+        else:
+            current_node.parent.right = next_node
+        if next_node:
+            next_node.parent = current_node.parent
 
 
     def is_empty(self) -> bool:
@@ -19,10 +45,9 @@ class SearchTree(ABC, Generic[T]):
 
 
     def size(self) -> int:
-        return len(self.queue)
+        return self.tree_size
 
 
-    # TODO: if not self.comp_func(current, )
     @abstractmethod
     def search(self, key: T) -> None:
         pass
@@ -34,15 +59,10 @@ class SearchTree(ABC, Generic[T]):
 
 
     @abstractmethod
-    def delete(self, key: T) -> None:
+    def delete(self, key: T) -> V | None:
         pass
 
 
-    # @abstractmethod
-    # def traverse(self, ) -> None:
-    #     pass
-
-
     @abstractmethod
-    def build(self, array: list[T]) -> None:
+    def visualize(self) -> str:
         pass
