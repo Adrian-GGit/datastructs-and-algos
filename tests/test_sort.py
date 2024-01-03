@@ -2,19 +2,18 @@ import copy
 import random
 import pytest
 from operator import lt, gt
-from typing import TypeVar, Callable
+from typing import Callable
+
+from algorithms.sorting.sort import T
 from algorithms.sorting.bubble_sort import BubbleSort
 from algorithms.sorting.insertion_sort import InsertionSort
-
 from algorithms.sorting.merge_sort import MergeSort
 from algorithms.sorting.quick_sort import QuickSort
 
-T = TypeVar('T')
-
 NUM_TESTS = 500
 INTEGER_RANGE_START = 0
-INTEGER_RANGE_END = 1000
-LENGTH_LSTS = 100
+INTEGER_RANGE_END = 100
+LENGTH_LSTS = random.randint(INTEGER_RANGE_START, INTEGER_RANGE_END)
 
 priority_functions = [
     lt, gt

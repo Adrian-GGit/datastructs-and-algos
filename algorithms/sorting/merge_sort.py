@@ -1,12 +1,15 @@
-from typing import Generic, TypeVar, Callable
-from operator import lt
+from algorithms.sorting.sort import Sort, T
 
-T = TypeVar('T')
 
-class MergeSort(Generic[T]):
-    def __init__(self, lst: list[T], comp_func: Callable[[T, T], bool] = lt) -> None:
-        self.comp_func = comp_func
-        self.lst = lst
+class MergeSort(Sort):
+    def _merge(self, left: list[T], right: list[T]) -> list[T]:
+        sorted_lst = []
+        while left and right:
+            next_item = left.pop(0) if self.comp_func(left[0], right[0]) else right.pop(0)
+            sorted_lst.append(next_item)
+        sorted_lst.extend(left)
+        sorted_lst.extend(right)
+        return sorted_lst
 
 
     def sort(self, lst: list[T] = None) -> list[T]:
@@ -20,15 +23,5 @@ class MergeSort(Generic[T]):
             left, right = lst[:len_lst_half], lst[len_lst_half:len(lst)]
             left = self.sort(left)
             right = self.sort(right)
-            self.lst = self.merge(left, right)
+            self.lst = self._merge(left, right)
             return self.lst
-
-
-    def merge(self, left: list[T], right: list[T]) -> list[T]:
-        sorted_lst = []
-        while left and right:
-            next_item = left.pop(0) if self.comp_func(left[0], right[0]) else right.pop(0)
-            sorted_lst.append(next_item)
-        sorted_lst.extend(left)
-        sorted_lst.extend(right)
-        return sorted_lst
