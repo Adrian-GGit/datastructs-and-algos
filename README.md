@@ -62,7 +62,7 @@ Semiexternal Kruskal | :x: | :x:
 ## Approximation algorithms
 Algorithm | Python | C++
 :------------ | :-------------| :-------------
-List scheduling
+List scheduling | :x: | :x:
 Metrical traveling salesman problem | :x: | :x:
 &ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp;Nearest addition algorithm | :x: | :x:
 &ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp;Double tree algorithm | :x: | :x:
