@@ -8,82 +8,82 @@ This repository contains the implementation of different popular data structures
 ## Sorting algorithms
 Algorithm | Python | C++
 :------------ | :-------------| :-------------
-Merge sort | ❌ | ❌
-Quick sort | ❌ | ❌
-Bubble sort | ❌ | ❌
-Insertion sort | ❌ | ❌
+Merge sort | :white_check_mark: | :x:
+Quick sort | :white_check_mark: | :x:
+Bubble sort | :white_check_mark: | :x:
+Insertion sort | :white_check_mark: | :x:
 
 ## Search algorithms
 ### Shortest path
 Algorithm | Python | C++
 :------------ | :-------------| :-------------
-Dijkstras algorithm | ❌ | ❌
-A-star | ❌ | ❌
-Bellman ford | ❌ | ❌
+Dijkstras algorithm | :x: | :x:
+A-star | :x: | :x:
+Bellman ford | :x: | :x:
 ### Minimum spanningtree
 Algorithm | Python | C++
 :------------ | :-------------| :-------------
-Prims algorithm | ❌ | ❌
-Kruskal | ❌ | ❌
+Prims algorithm | :x: | :x:
+Kruskal | :x: | :x:
 ### Depths first search
-Datastruct | Python | C++
+Algorithm | Python | C++
 :------------ | :-------------| :-------------
-DFS algorithm | ✅ | ✅
+DFS algorithm | :white_check_mark: | :white_check_mark:
 ### Maximum flow/Minimum s-t cut
-Datastruct | Python | C++
+Algorithm | Python | C++
 :------------ | :-------------| :-------------
-Linear programming | ❌ | ❌
-Ford fulkerson | ❌ | ❌
-Dinitz algorithm | ❌ | ❌
-Preflow-push algorithm | ❌ | ❌
+Linear programming | :x: | :x:
+Ford fulkerson | :x: | :x:
+Dinitz algorithm | :x: | :x:
+Preflow-push algorithm | :x: | :x:
 ### Matching
-Datastruct | Python | C++
+Algorithm | Python | C++
 :------------ | :-------------| :-------------
-Maximum matching | ❌ | ❌
-Maximum cardinality matching | ❌ | ❌
+Maximum matching | :x: | :x:
+Maximum cardinality matching | :x: | :x:
 
 ## Randomized algorithms
-Datastruct | Python | C++
+Algorithm | Python | C++
 :------------ | :-------------| :-------------
 Sort checker (permutation characteristic)
-&ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp;Polynom | ❌ | ❌
-&ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp;Hash table | ❌ | ❌
+&ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp;Polynom | :x: | :x:
+&ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp;Hash table | :x: | :x:
 Hashing
-&ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp;Cuckoo hashing | ❌ | ❌
-&ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp;Blocked cuckoo hashing | ❌ | ❌
-Quick sort | ❌ | ❌
+&ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp;Cuckoo hashing | :x: | :x:
+&ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp;Blocked cuckoo hashing | :x: | :x:
+Quick sort | :x: | :x:
 
 ## External algorithms
-Datastruct | Python | C++
+Algorithm | Python | C++
 :------------ | :-------------| :-------------
-Multiway merge | ❌ | ❌
-Semiexternal Kruskal | ❌ | ❌
+Multiway merge | :x: | :x:
+Semiexternal Kruskal | :x: | :x:
 
 ## Approximation algorithms
-Datastruct | Python | C++
+Algorithm | Python | C++
 :------------ | :-------------| :-------------
-List scheduling
-Metrical traveling salesman problem | ❌ | ❌
-&ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp;Nearest addition algorithm | ❌ | ❌
-&ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp;Double tree algorithm | ❌ | ❌
-&ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp;Christofides algorithm | ❌ | ❌
+List scheduling | :x: | :x:
+Metrical traveling salesman problem
+&ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp;Nearest addition algorithm | :x: | :x:
+&ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp;Double tree algorithm | :x: | :x:
+&ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp;Christofides algorithm | :x: | :x:
 Knapsack
-&ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp;Dynamic programming | ❌ | ❌
+&ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp;Dynamic programming | :x: | :x:
 
 ## Fixed parameter algorithms
-Datastruct | Python | C++
+Algorithm | Python | C++
 :------------ | :-------------| :-------------
-Vertex cover | ❌ | ❌
+Vertex cover | :x: | :x:
 
 ## Parallel algorithms
-Datastruct | Python | C++
+Algorithm | Python | C++
 :------------ | :-------------| :-------------
-Prefix sum | ❌ | ❌
-Parallel quicksort | ❌ | ❌
-Parallel multiway mergesort | ❌ | ❌
+Prefix sum | :x: | :x:
+Parallel quicksort | :x: | :x:
+Parallel multiway mergesort | :x: | :x:
 
 ## Geometric algorithms
-Datastruct | Python | C++
+Algorithm | Python | C++
 :------------ | :-------------| :-------------
 
 <br />
@@ -93,19 +93,24 @@ Datastruct | Python | C++
 ## Priority queues
 Datastruct | Python | C++
 :------------ | :-------------| :-------------
-Binary heap | ✅ | ❌
-Binary search tree | ❌ | ❌
-Binomial heap | ❌ | ❌
-External priority queue | ❌ | ❌
-External search trees | ❌ | ❌
+Binary heap | :white_check_mark: | :x:
+Binomial heap | :x: | :x:
+External priority queue | :x: | :x:
+Pairing heap | :x: | :x:
+Fibonacci heap | :x: | :x:
+Bucket queue | :x: | :x:
+Radix heap | :x: | :x:
 
-## Adressable priority queues
+## Search trees
 Datastruct | Python | C++
 :------------ | :-------------| :-------------
-Pairing heap | ❌ | ❌
-Fibonacci heap | ❌ | ❌
-Bucket queue | ❌ | ❌
-Radix heap | ❌ | ❌
+Binary search tree | :x: | :x:
+External search tree | :x: | :x:
+
+## [Legend](https://gist.github.com/rxaviers/7360908)
+- :white_check_mark: Finished
+- :warning: Fix needed
+- :x: Todo
 
 </br>
 
