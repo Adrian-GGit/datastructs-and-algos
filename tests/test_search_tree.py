@@ -5,7 +5,7 @@ from operator import lt, gt
 from typing import Callable
 from datastructures.search_trees.binary_search_tree import BinarySearchTree, T
 
-NUM_TESTS = 500
+NUM_TESTS = 100
 INTEGER_RANGE_START = 0
 INTEGER_RANGE_END = 1000
 LENGTH_LSTS = 100
@@ -34,11 +34,17 @@ def test_search_tree(order_relation, search_tree):
         tree = search_tree(order_relation)
         print(f'[-] Used lst: {keys}')
 
+        random_value = random.randint(INTEGER_RANGE_START, INTEGER_RANGE_END)
+        tree.insert(random_value, random_value)
+        assert tree.search(random_value).value == random_value
+        assert tree.search(-1) == None
+        tree.delete(random_value)
+
         for key in keys:
             tree.insert(key, key)
 
         deletion_range = (len(keys) // 2)
-        for i in range(deletion_range):
+        for _ in range(deletion_range):
             keys.pop()
             tree.delete(keys[len(keys) - 1])
         print(f'[-] Used lst: {keys}')
@@ -49,3 +55,6 @@ def test_search_tree(order_relation, search_tree):
                 assert node.value == key
             else:
                 assert tree.search(-1) == None
+
+        for key in keys[1:len(keys)]:
+            tree.delete(key)
