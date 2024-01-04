@@ -63,7 +63,7 @@ Semiexternal Kruskal | :x: | :x:
 Algorithm | Python | C++
 :------------ | :-------------| :-------------
 List scheduling | :x: | :x:
-Metrical traveling salesman problem | :x: | :x:
+Metrical traveling salesman problem
 &ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp;Nearest addition algorithm | :x: | :x:
 &ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp;Double tree algorithm | :x: | :x:
 &ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp;Christofides algorithm | :x: | :x:
