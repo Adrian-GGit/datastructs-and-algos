@@ -4,7 +4,7 @@ from algorithms.DFS import dfs
 VERBOSE = True
 
 def test_num_sccs_listCase(list_graph):
-    instance = dfs.DFS(list_graph)
+    instance = dfs.DFS(list_graph, verbose=VERBOSE)
     instance.process()
     num_closed_scc = len(set(instance.component))
     assert num_closed_scc == len(list_graph)

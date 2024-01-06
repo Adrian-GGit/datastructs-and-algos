@@ -28,7 +28,7 @@ Kruskal | :x: | :x:
 ### Depths first search
 Algorithm | Python | C++
 :------------ | :-------------| :-------------
-DFS algorithm | :white_check_mark: | :x:
+DFS algorithm | :white_check_mark: | :white_check_mark:
 ### Maximum flow/Minimum s-t cut
 Algorithm | Python | C++
 :------------ | :-------------| :-------------
