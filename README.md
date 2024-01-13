@@ -86,6 +86,24 @@ Parallel multiway mergesort | :x: | :x:
 Algorithm | Python | C++
 :------------ | :-------------| :-------------
 
+
+## Stringology
+Algorithm | Python | C++
+:------------ | :-------------| :-------------
+LCP | :white_check_mark: | :x:
+Radix Sort | :x: | :x:
+Multikey Quicksort | :x: | :x:
+Pattern Search
+&ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp;Naive | :x: | :x:
+&ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp;Knuth-Morris-Pratt | :x: | :x:
+Suffix Array Construction
+&ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp;Prefix Doubling | :x: | :x:
+&ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp;Difference Cover | :x: | :x:
+&ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp;Suffix Tree Construction | :x: | :x:
+LCP Array Construction | :x: | :x:
+Compression
+&ensp;&thinsp;&ensp;&thinsp;&ensp;&thinsp;Lempel-Ziv 77 | :x: | :x:
+
 <br />
 
 # Data structures
