@@ -5,6 +5,7 @@
 #include <unordered_set>
 #include <unordered_map>
 #include <stack>
+#include <algorithm>
 
 namespace DFS
 {
@@ -49,9 +50,7 @@ namespace DFS
 	private:
 		void mRoot(size_t v)
 		{
-			mOReps.push(v);
-			mONodes.push_back(v);
-			mDfsNum.insert_or_assign(v, mDfsPos++);
+			mTraverseTreeEdge(v, v);
 		}
 
 		void mDfs(size_t u, size_t v)
@@ -72,19 +71,17 @@ namespace DFS
 			}
 			mBacktrack(u, v);
 		}
+
 		void mTraverseNonEdgeTree(size_t v, size_t w)
 		{
 			if (mVerbose)
 				std::cout << "TRAVERSE_NONTREEEDGE("<<v << ", " << w << ")\n"; 
-			for (size_t x : mONodes)
+			auto foundValue = std::find(mONodes.begin(), mONodes.end(), w);
+			if(foundValue != mONodes.end())
 			{
-				if( x == w)
+				while (mDfsNum[w] < mDfsNum[mOReps.top()])
 				{
-					while (mDfsNum[w] < mDfsNum[mOReps.top()])
-					{
-						mOReps.pop();
-					}
-					break;
+					mOReps.pop();
 				}
 			}
 		}
@@ -130,7 +127,7 @@ namespace DFS
 		std::vector<size_t> mONodes;
 		std::unordered_map<size_t, size_t> mDfsNum;
 		std::vector<size_t> mComponent;
-		size_t mDfsPos = 0;
+		size_t mDfsPos = 1;
 		bool mVerbose = false;
 	};
 } // namespace DFS

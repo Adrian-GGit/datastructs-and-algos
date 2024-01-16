@@ -65,6 +65,7 @@ bool testSCCMembers_Tutorialcase()
     aList[4] = {1};
     aList[5] = {6, 7};
     aList[6] = {0, 4};
+    aList[7] = {};
 
     auto dfs = DFS::DFS(aList, verbose);
     dfs.process();
